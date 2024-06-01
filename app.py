@@ -33,4 +33,4 @@ def getShows():
     titles = cursor.fetchall()
     return jsonify(titles)
 
-app.run(port=8000)
+app.run()
