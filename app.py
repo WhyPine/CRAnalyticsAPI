@@ -7,7 +7,6 @@ ENV_VARS = os.environ.get("DATABASE_CONNECTION_STRING")
 split = ENV_VARS.split(';')
 PARAMS = {}
 for pair in split:
-    print(pair)
     key,value = pair.split('=')
     PARAMS[key] = value
 
