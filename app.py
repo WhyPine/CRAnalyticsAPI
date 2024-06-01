@@ -26,6 +26,9 @@ cursor = conn.cursor()
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+   return jsonify([{"Index":"Succeeded"}])
 
 @app.route(('/shows'), methods=['GET'])
 def getShows():
@@ -33,4 +36,5 @@ def getShows():
     titles = cursor.fetchall()
     return jsonify(titles)
 
-app.run()
+if __name__ == '__main__':
+   app.run()
