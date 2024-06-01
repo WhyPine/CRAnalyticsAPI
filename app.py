@@ -2,11 +2,15 @@ from flask import Flask, jsonify, request
 import psycopg2
 import os
 
-
-
 ENV_VARS = os.environ.get("DATABASE_CONNECTION_STRING")
-PARAMS = {pair.split('=')[0]: pair.split('=')[1] for pair in ENV_VARS.split(' ')}
-print(ENV_VARS)
+
+split = ENV_VARS.split(';')
+PARAMS = {}
+for pair in split:
+    print(pair)
+    key,value = pair.split('=')
+    PARAMS[key] = value
+
 
 DB_USER=PARAMS['user']
 DB_PASS=PARAMS['password']
@@ -29,3 +33,5 @@ def getShows():
     cursor.execute("SELECT title FROM SHOWS;")
     titles = cursor.fetchall()
     return jsonify(titles)
+
+app.run(port=8000)
